@@ -17,7 +17,7 @@
         v-on="on"
       ></v-text-field>
     </template>
-    <v-date-picker :min="dateFormat" v-model="date" @input="addDate(date)"></v-date-picker>
+    <v-date-picker :min="min" v-model="date" @input="addDate()"></v-date-picker>
   </v-menu>
 </template>
 

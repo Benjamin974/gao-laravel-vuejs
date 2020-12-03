@@ -14,7 +14,7 @@ class UpdateAttributionsTable extends Migration
     public function up()
     {
         Schema::table('attributions', function (Blueprint $table) {
-            $table->date('date');
+            $table->date('date')->nullable();
         });
     }
 

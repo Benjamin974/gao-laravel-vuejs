@@ -14,10 +14,11 @@ class OrdinateursResource extends JsonResource
      */
     public function toArray($request)
     {
+        $attributions = AttributionsResource::collection($this->attributions);
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'clients' => $this->clients,
+            'attributions' => $attributions,
         ];
     }
 }

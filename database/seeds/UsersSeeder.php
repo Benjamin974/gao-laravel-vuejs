@@ -14,27 +14,27 @@ class UsersSeeder extends Seeder
         $array = [
             [
                 'id' => 1,
-                'name' => 'RoiSoleil',
+                'name' => 'Terrifiant',
                 'firstname' => 'Louis I'
             ],
             [
                 'id' => 2,
-                'name' => 'RoiSoleil',
+                'name' => 'Fatiguant',
                 'firstname' => 'Louis II'
             ],
             [
                 'id' => 3,
-                'name' => 'RoiSoleil',
+                'name' => 'Insultant',
                 'firstname' => 'Louis III'
             ],
             [
                 'id' => 4,
-                'name' => 'RoiSoleil',
+                'name' => 'Epoustouflant',
                 'firstname' => 'Louis IV'
             ],
             [
                 'id' => 5,
-                'name' => 'RoiSoleil',
+                'name' => 'Complete',
                 'firstname' => 'Louis V'
             ],
         ];

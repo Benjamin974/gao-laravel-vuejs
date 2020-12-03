@@ -10,10 +10,9 @@ class Ordinateur extends Model
     protected $fillable = ['name'];
     public $timestamps = false;
 
-    public function clients()
+    public function attributions()
     {
-        return $this->belongsToMany(Client::class, 'attributions','id_ordinateur', 'id_client')->withPivot('horaire', 'date');
+        return $this->hasMany(Attribution::class, 'id_ordinateur');
     }
-
 
 }

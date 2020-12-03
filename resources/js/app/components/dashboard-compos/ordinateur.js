@@ -1,47 +1,74 @@
-import Axios from "axios";
-
+import AddAttribution from './AddAttribution.vue'
+import DeleteOrdinateur from './DeleteOrdinateur.vue'
+import DeleteAttribution from './DeleteAttribution.vue';
 export default {
+    components: {
+        AddAttribution,
+        DeleteOrdinateur,
+        DeleteAttribution
+    },
+
     props: {
         ordinateur: {
+            default: function () {
+                return {}
+            },
+        },
+        date: {
             default: function () {
                 return {}
             },
         }
     },
 
+    watch: {
+        ordinateur: function () {
+            this.initialize();
+        }
+    },
+
     data() {
         return {
-            attributions: [],
-            horaires: [{ horaire: '8' }, { horaire: '9' }, { horaire: '10' }, { horaire: '11' }, { horaire: '12' }, { horaire: '13' }, { horaire: '14' }, { horaire: '15' },]
-
+            attributions: {},
+            horaires: []
         }
     },
 
     created() {
         this.initialize();
-        this.displayHoraire(this.attributions);
     },
 
     methods: {
         initialize() {
-            this.ordinateur.client.forEach(attribution => {
-                this.attributions.push({horaire: attribution.pivot.horaire, firstname:attribution.firstname})
-
-            })
-
-        },
-
-        displayHoraire(attributions) {
-            attributions.forEach(attribution => {
-                for (let i = 0; i < this.horaires.length; i++) {
-                    if (this.horaires[i].horaire == attribution.horaire) {
-                        this.horaires[i] = attribution;
-
-                    }
+            this.ordinateur.attributions.forEach(attributions => {
+                this.attributions[attributions.horaire] = {
+                    id: attributions.id,
+                    nom: attributions.client.name,
+                    prenom: attributions.client.firstname
                 }
             })
+            this.displayHoraire();
+        },
 
+        displayHoraire() {
+            this.horaires = [];
+            for (let i = 0; i < 10; i++) {
+                this.horaires.push({
+                    index: i + 8,
+                    attribution: (typeof this.attributions[i + 8] !== 'undefined') ? this.attributions[i + 8] : false
+                })
+            }
+        },
 
-        }
+        update(attribution) {
+            this.ordinateur.attributions.push(attribution)
+            this.initialize();
+        },
+
+        deleteAttribution(horaire) {
+
+            _.unset(this.attributions, horaire)
+            this.displayHoraire();
+        },
     }
 }

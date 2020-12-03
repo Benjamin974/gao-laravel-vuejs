@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { apiService } from "../../_services/apiService";
 
 export default {
 
@@ -17,7 +18,7 @@ export default {
 
   methods: {
     addOrdinateur() {
-      Axios.post('api/ordinateur', {name: this.name, date: this.date}).then(({data}) => {
+      apiService.post('api/ordinateur/add', {name: this.name, date: this.date}).then(({data}) => {
         this.$emit('addOrdi', data.data)
         this.dialog = false;
       })

@@ -14,13 +14,14 @@ class AttributionsResource extends JsonResource
      */
     public function toArray($request)
     {
+        $client = new ClientsResource($this->client);
         
         return [
             'id' => $this->id,
             'horaire' => $this->horaire,
+            'name' => $this->name,
             'date' => $this->date,
-            'client' => $this->client,
-            'ordinateur' => $this->ordinateur
+            'client' => $client,
         ];
     }
 }
